@@ -9,6 +9,6 @@ const routes = (0, express_1.Router)();
 routes.post("/usuario", new UsuarioController_1.UsuarioController().create);
 routes.post("/cargo", new CargoController_1.CargoController().createCargo);
 routes.post("/horario", new HorarioController_1.HorarioController().createHorario);
-routes.post("/pedidoanonimo", new PedidoController_1.PedidoController().createPedido);
+// routes.post("/pedidoanonimo", new PedidoController().createPedido); 
 routes.post("/pedido/:id_autorPedido/create", new PedidoController_1.PedidoController().createPedido);
 exports.default = routes;

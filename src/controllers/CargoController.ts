@@ -7,19 +7,13 @@ export class CargoController {
 
     //validação básica
     if (!cargo) {
-      return res.status(400).json({message: "O cargo é obrigatório"});
+      return res.status(400).json({ message: "O cargo é obrigatório" });
     }
 
-    try {
-      const newCargo = cargoRepository.create({ cargo });
+    const newCargo = cargoRepository.create({ cargo });
 
-      await cargoRepository.save(newCargo)
-      
-      return res.status(201).json(newCargo)
-      
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json({ message: "Internal Server Error" });
-    }
+    await cargoRepository.save(newCargo);
+
+    return res.status(201).json(newCargo);
   }
 }

@@ -1,5 +1,6 @@
 import { usuarioRepository } from "./../repositories/UsuarioRepository";
 import { Response, Request } from "express";
+import { Usuario } from "../entities/Usuario";
 
 export class UsuarioController {
   async create(req: Request, res: Response) {
@@ -11,20 +12,15 @@ export class UsuarioController {
       return res.status(400).json({ message: "O nome é obrigatório" });
     }
 
-    try {
-      const newUsuario = usuarioRepository.create({
-        nome,
-        email,
-        senha,
-        id_cargo
-      });
+    const newUsuario = usuarioRepository.create({
+      nome,
+      email,
+      senha,
+      id_cargo,
+    });
 
-      await usuarioRepository.save(newUsuario);
+    await usuarioRepository.save(newUsuario);
 
-      return res.status(201).json(newUsuario);
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json({ message: "Internal Server Error" });
-    }
+    return res.status(201).json(newUsuario);
   }
 }

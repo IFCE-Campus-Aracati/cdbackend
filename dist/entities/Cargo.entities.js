@@ -10,17 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Cargo = void 0;
-const Usuario_1 = require("./Usuario");
+const Usuario_entities_1 = require("./Usuario.entities");
 const typeorm_1 = require("typeorm");
 let Cargo = class Cargo {
-    constructor() {
-        this.cargo = "Membro da Comunidade";
-        // constructor(id_cargo:number, cargo:string, id_usuario: Cargo[] | null){
-        //   this.id_cargo = id_cargo
-        //   this.cargo = cargo
-        //   this.id_usuario = id_usuario
-        // }
-    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -31,7 +23,7 @@ __decorate([
     __metadata("design:type", String)
 ], Cargo.prototype, "cargo", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => Usuario_1.Usuario, (usuario) => usuario.id_cargo),
+    (0, typeorm_1.OneToMany)(() => Usuario_entities_1.Usuario, (usuario) => usuario.id_cargo),
     __metadata("design:type", Object)
 ], Cargo.prototype, "id_usuario", void 0);
 Cargo = __decorate([

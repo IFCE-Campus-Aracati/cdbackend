@@ -1,11 +1,11 @@
 import 'express-async-errors'
-import express from 'express'
-import { resolve } from "path";
+import express from "express";
 import { AppDataSource } from "./data-source";
 import routes from "./routes";
 import { errorMiddleware } from './middlewares/error';
+import { ApiError, BadRequestError, NotFoundError, UnauthorizedError } from "./helpers/api-erros";
 
-AppDataSource.initialize().then(() => {
+AppDataSource.initialize().then( async () => {
   const app = express();
 
   app.use(express.json());
@@ -16,3 +16,5 @@ AppDataSource.initialize().then(() => {
 
   return app.listen(process.env.PORT);
 });
+
+

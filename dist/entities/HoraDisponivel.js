@@ -13,8 +13,13 @@ exports.HoraDisponivel = void 0;
 const Pedido_1 = require("./Pedido");
 const typeorm_1 = require("typeorm");
 let HoraDisponivel = class HoraDisponivel {
-    constructor() {
-        this.Disponivel = false;
+    constructor(id_hora, dataInicio, dataFim, disponivel, horas) {
+        this.disponivel = false;
+        this.id_hora = id_hora;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
+        this.disponivel = disponivel;
+        this.horas = horas;
     }
 };
 __decorate([
@@ -22,22 +27,23 @@ __decorate([
     __metadata("design:type", Number)
 ], HoraDisponivel.prototype, "id_hora", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "timestamptz" }),
+    (0, typeorm_1.Column)({ type: "text" }),
     __metadata("design:type", Date)
 ], HoraDisponivel.prototype, "dataInicio", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "timestamptz" }),
+    (0, typeorm_1.Column)({ type: "text" }),
     __metadata("design:type", Date)
 ], HoraDisponivel.prototype, "dataFim", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Boolean)
-], HoraDisponivel.prototype, "Disponivel", void 0);
+], HoraDisponivel.prototype, "disponivel", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => Pedido_1.Pedido, (pedido) => pedido.id_horaDisponivel),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], HoraDisponivel.prototype, "horas", void 0);
 HoraDisponivel = __decorate([
-    (0, typeorm_1.Entity)("HoraDisponivel")
+    (0, typeorm_1.Entity)("horaDisponivel"),
+    __metadata("design:paramtypes", [Number, Date, Date, Boolean, Object])
 ], HoraDisponivel);
 exports.HoraDisponivel = HoraDisponivel;

@@ -15,6 +15,50 @@ const Cargo_1 = require("./Cargo");
 const Pedido_1 = require("./Pedido");
 const typeorm_1 = require("typeorm");
 let Usuario = class Usuario {
+    constructor(nome, email, senha, id_cargo, autorPedido, autorAutorizador, autorAutorizadorAnonimo) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.id_cargo = id_cargo;
+        this.autorPedido = autorPedido;
+        this.autorAutorizador = autorAutorizador;
+        this.autorAutorizadorAnonimo = autorAutorizadorAnonimo;
+        //this.validate()
+    }
+    validate() {
+        const validatesenha = new RegExp("^(?=.*[A-Za-z])(?=.*?[0-9]).{6,}$");
+        const validateEmail = new RegExp("(([a-z]+\.?[a-z]+\.?[a-z]+[0-9]{2})+)(@aluno.ifce.edu.br)");
+        if (this.nome == "" || this.nome == null) {
+            throw new Error("nome é obrigatorio");
+        }
+        if (this.email == "" || this.email == null || !(validateEmail.test(this.email))) {
+            throw new Error("crie o email apartir do email institucional");
+        }
+        if (this.senha == "" || this.senha == null || !(validatesenha.test(this.senha))) {
+            throw new Error("senha é obrigatorio, devendo conter números, simbolos e letras maiusculas e minusculas ");
+        }
+    }
+    get Id_usuario() {
+        return this.id_usuario;
+    }
+    get Nome() {
+        return this.nome;
+    }
+    get Email() {
+        return this.email;
+    }
+    get Senha() {
+        return this.senha;
+    }
+    get Id_cargo() {
+        return this.id_cargo;
+    }
+    get AutorPedido() {
+        return this.autorPedido;
+    }
+    get AutorAutorizador() {
+        return this.autorAutorizador;
+    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -29,7 +73,7 @@ __decorate([
     __metadata("design:type", String)
 ], Usuario.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: "text", unique: true }),
+    (0, typeorm_1.Column)({ type: "text" }),
     __metadata("design:type", String)
 ], Usuario.prototype, "senha", void 0);
 __decorate([
@@ -39,17 +83,18 @@ __decorate([
 ], Usuario.prototype, "id_cargo", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => Pedido_1.Pedido, (pedido) => pedido.id_autorPedido),
-    __metadata("design:type", Array)
-], Usuario.prototype, "AutorPedido", void 0);
+    __metadata("design:type", Object)
+], Usuario.prototype, "autorPedido", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => Pedido_1.Pedido, (pedido) => pedido.id_autorAutorizador),
-    __metadata("design:type", Array)
-], Usuario.prototype, "AutorAutorizador", void 0);
+    __metadata("design:type", Object)
+], Usuario.prototype, "autorAutorizador", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => PedidoAnonimo_1.PedidoAnonimo, (pedidoanonimo) => pedidoanonimo.id_autorAutorizadorAnonimo),
-    __metadata("design:type", Array)
-], Usuario.prototype, "AutorAutorizadorAnonimo", void 0);
+    __metadata("design:type", Object)
+], Usuario.prototype, "autorAutorizadorAnonimo", void 0);
 Usuario = __decorate([
-    (0, typeorm_1.Entity)("usuarios")
+    (0, typeorm_1.Entity)("usuarios"),
+    __metadata("design:paramtypes", [String, String, String, Cargo_1.Cargo, Object, Object, Object])
 ], Usuario);
 exports.Usuario = Usuario;

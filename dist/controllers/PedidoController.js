@@ -12,7 +12,7 @@ class PedidoController {
         const pedido = await PedidoRepository_1.pedidoRepository.findOneBy({
             id_pedido: Number(id_autorPedido),
         });
-        if (!pedido) { // funciona ??
+        if (!pedido) {
             throw new api_erros_1.BadRequestError("Pedido não existe");
         }
         const novoPedido = PedidoRepository_1.pedidoRepository.create({

@@ -10,8 +10,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PedidoAnonimo = void 0;
-const HoraDisponivel_1 = require("./HoraDisponivel");
-const Usuario_1 = require("./Usuario");
+const HoraDisponivel_entities_1 = require("./HoraDisponivel.entities");
+const Usuario_entities_1 = require("./Usuario.entities");
 const typeorm_1 = require("typeorm");
 let PedidoAnonimo = class PedidoAnonimo {
 };
@@ -44,14 +44,14 @@ __decorate([
     __metadata("design:type", String)
 ], PedidoAnonimo.prototype, "codigo", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => HoraDisponivel_1.HoraDisponivel, (horaDisponivel) => horaDisponivel.horas),
+    (0, typeorm_1.ManyToOne)(() => HoraDisponivel_entities_1.HoraDisponivel, (horaDisponivel) => horaDisponivel.horas),
     (0, typeorm_1.JoinColumn)({ name: "id_horaDisponivel" }),
-    __metadata("design:type", HoraDisponivel_1.HoraDisponivel)
+    __metadata("design:type", HoraDisponivel_entities_1.HoraDisponivel)
 ], PedidoAnonimo.prototype, "id_horaDisponivel", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => Usuario_1.Usuario, (usuario) => usuario.autorAutorizadorAnonimo),
+    (0, typeorm_1.ManyToOne)(() => Usuario_entities_1.Usuario, (usuario) => usuario.autorAutorizadorAnonimo),
     (0, typeorm_1.JoinColumn)({ name: "id_autorAutorizadorAnonimo" }),
-    __metadata("design:type", Usuario_1.Usuario)
+    __metadata("design:type", Usuario_entities_1.Usuario)
 ], PedidoAnonimo.prototype, "id_autorAutorizadorAnonimo", void 0);
 PedidoAnonimo = __decorate([
     (0, typeorm_1.Entity)("pedidosAnonimo")

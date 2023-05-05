@@ -10,52 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Prioridade = exports.Estado = exports.Pedido = void 0;
-const HoraDisponivel_1 = require("./HoraDisponivel");
-const Usuario_1 = require("./Usuario");
+const HoraDisponivel_entities_1 = require("./HoraDisponivel.entities");
+const Usuario_entities_1 = require("./Usuario.entities");
 const typeorm_1 = require("typeorm");
 let Pedido = class Pedido {
-    constructor(id_pedido, material, prioridade, maquina, estado, arquivo, medida, id_horaDisponivel, id_autorPedido, id_autorAutorizador) {
-        this.id_pedido = id_pedido;
-        this.material = material;
-        this.prioridade = prioridade;
-        this.maquina = maquina;
-        this.estado = estado;
-        this.arquivo = arquivo;
-        this.medida = medida;
-        this.id_horaDisponivel = id_horaDisponivel;
-        this.id_autorPedido = id_autorPedido;
-        this.id_autorAutorizador = id_autorAutorizador;
-    }
-    get Id() {
-        return this.id_pedido;
-    }
-    get Material() {
-        return this.material;
-    }
-    get Prioridade() {
-        return this.prioridade;
-    }
-    get Maquina() {
-        return this.maquina;
-    }
-    get Estado() {
-        return this.estado;
-    }
-    get Arquivo() {
-        return this.arquivo;
-    }
-    get Medida() {
-        return this.medida;
-    }
-    get Id_horaDisponivel() {
-        return this.id_horaDisponivel;
-    }
-    get Id_autorPedido() {
-        return this.id_autorPedido;
-    }
-    get value() {
-        return this.id_autorAutorizador;
-    }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
@@ -86,24 +44,22 @@ __decorate([
     __metadata("design:type", String)
 ], Pedido.prototype, "medida", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => HoraDisponivel_1.HoraDisponivel, (horaDisponivel) => horaDisponivel.horas),
+    (0, typeorm_1.ManyToOne)(() => HoraDisponivel_entities_1.HoraDisponivel, (horaDisponivel) => horaDisponivel.horas),
     (0, typeorm_1.JoinColumn)({ name: "id_horaDisponivel" }),
-    __metadata("design:type", HoraDisponivel_1.HoraDisponivel)
+    __metadata("design:type", HoraDisponivel_entities_1.HoraDisponivel)
 ], Pedido.prototype, "id_horaDisponivel", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => Usuario_1.Usuario, (usuario) => usuario.AutorPedido),
+    (0, typeorm_1.ManyToOne)(() => Usuario_entities_1.Usuario, (usuario) => usuario.autorPedido),
     (0, typeorm_1.JoinColumn)({ name: "id_autorPedido" }),
-    __metadata("design:type", Usuario_1.Usuario)
+    __metadata("design:type", Usuario_entities_1.Usuario)
 ], Pedido.prototype, "id_autorPedido", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => Usuario_1.Usuario, (usuario) => usuario.AutorAutorizador),
+    (0, typeorm_1.ManyToOne)(() => Usuario_entities_1.Usuario, (usuario) => usuario.autorAutorizador),
     (0, typeorm_1.JoinColumn)({ name: "id_autorAutorizador" }),
-    __metadata("design:type", Usuario_1.Usuario)
+    __metadata("design:type", Usuario_entities_1.Usuario)
 ], Pedido.prototype, "id_autorAutorizador", void 0);
 Pedido = __decorate([
-    (0, typeorm_1.Entity)("pedidos"),
-    __metadata("design:paramtypes", [Number, String, Number, String, Number, Buffer, String, HoraDisponivel_1.HoraDisponivel,
-        Usuario_1.Usuario, Usuario_1.Usuario])
+    (0, typeorm_1.Entity)("pedidos")
 ], Pedido);
 exports.Pedido = Pedido;
 var Estado;

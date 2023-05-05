@@ -9,32 +9,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Cargo = void 0;
-const Usuario_1 = require("./Usuario");
+exports.HoraDisponivel = void 0;
+const Pedido_entities_1 = require("./Pedido.entities");
 const typeorm_1 = require("typeorm");
-let Cargo = class Cargo {
+let HoraDisponivel = class HoraDisponivel {
     constructor() {
-        this.cargo = "Membro da Comunidade";
-        // constructor(id_cargo:number, cargo:string, id_usuario: Cargo[] | null){
-        //   this.id_cargo = id_cargo
-        //   this.cargo = cargo
-        //   this.id_usuario = id_usuario
-        // }
+        this.disponivel = false;
     }
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Cargo.prototype, "id_cargo", void 0);
+], HoraDisponivel.prototype, "id_hora", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: "text" }),
-    __metadata("design:type", String)
-], Cargo.prototype, "cargo", void 0);
+    __metadata("design:type", Date)
+], HoraDisponivel.prototype, "dataInicio", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => Usuario_1.Usuario, (usuario) => usuario.id_cargo),
+    (0, typeorm_1.Column)({ type: "text" }),
+    __metadata("design:type", Date)
+], HoraDisponivel.prototype, "dataFim", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Boolean)
+], HoraDisponivel.prototype, "disponivel", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => Pedido_entities_1.Pedido, (pedido) => pedido.id_horaDisponivel),
     __metadata("design:type", Object)
-], Cargo.prototype, "id_usuario", void 0);
-Cargo = __decorate([
-    (0, typeorm_1.Entity)("cargos")
-], Cargo);
-exports.Cargo = Cargo;
+], HoraDisponivel.prototype, "horas", void 0);
+HoraDisponivel = __decorate([
+    (0, typeorm_1.Entity)("horaDisponivel")
+], HoraDisponivel);
+exports.HoraDisponivel = HoraDisponivel;

@@ -1,3 +1,10 @@
-import { Usuario } from "./../entities/Usuario";
+import { Usuario } from "../entities/Usuario.entities";
 import { AppDataSource } from "./../data-source";
-export const usuarioRepository = AppDataSource.getRepository(Usuario);
+
+
+const usuarioRepository = AppDataSource.getRepository(Usuario);
+
+
+
+
+export {usuarioRepository}

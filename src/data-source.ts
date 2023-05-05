@@ -1,11 +1,13 @@
-import { PedidoAnonimo } from './entities/PedidoAnonimo';
-import { Usuario } from './entities/Usuario';
-import { Pedido } from './entities/Pedido';
-import { HoraDisponivel } from './entities/HoraDisponivel';
-import { Cargo } from './entities/Cargo';
+import { PedidoAnonimo } from './entities/PedidoAnonimo.entites';
+import { Usuario } from './entities/Usuario.entities';
+import { Pedido } from './entities/Pedido.entities';
+import { HoraDisponivel } from './entities/HoraDisponivel.entities';
+import { Cargo } from './entities/Cargo.entities';
 import "dotenv/config";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { default1679541259198 } from './migrations/1679541259198-default';
+
 
 const port = process.env.DB_PORT as number | undefined;
 
@@ -16,10 +18,9 @@ export const AppDataSource = new DataSource({
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  entities: [Cargo,HoraDisponivel,Pedido,Usuario, PedidoAnonimo],
-  migrations: [`dist/migrations/*.{js, ts}`],
-  "synchronize": true, 
-  "logging": false, 
+  entities: [Cargo, HoraDisponivel, Pedido, Usuario, PedidoAnonimo],
+  migrations: [default1679541259198],
+  subscribers: []
 });
 
 AppDataSource.initialize()

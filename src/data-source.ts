@@ -6,20 +6,21 @@ import { Cargo } from './entities/Cargo.entities';
 import "dotenv/config";
 import "reflect-metadata";
 import { DataSource } from "typeorm";
-import { default1679541259198 } from './migrations/1679541259198-default';
+import { default1687219870803 } from './migrations/1687219870803-default';
+
 
 
 const port = process.env.DB_PORT as number | undefined;
 
 export const AppDataSource = new DataSource({
-  type: "postgres",
+  type: "mysql",
   host: process.env.DB_HOST,
   port: port,
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
   entities: [Cargo, HoraDisponivel, Pedido, Usuario, PedidoAnonimo],
-  migrations: [default1679541259198],
+  migrations: [default1687219870803],
   subscribers: []
 });
 

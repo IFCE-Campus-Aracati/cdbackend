@@ -9,7 +9,7 @@ import {
 
 @Entity("cargos")
 export class Cargo {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({type: "int"})
   id_cargo: number;
 
   @Column({ type: "text" })

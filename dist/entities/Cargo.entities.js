@@ -15,7 +15,7 @@ const typeorm_1 = require("typeorm");
 let Cargo = class Cargo {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: "int" }),
     __metadata("design:type", Number)
 ], Cargo.prototype, "id_cargo", void 0);
 __decorate([

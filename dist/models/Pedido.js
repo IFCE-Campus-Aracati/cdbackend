@@ -2,20 +2,41 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Prioridade = exports.Estado = exports.Pedido = void 0;
 class Pedido {
-    constructor(id_pedido, material, prioridade, maquina, estado, arquivo, medida, id_horaDisponivel, id_autorPedido, id_autorAutorizador) {
-        this.id_pedido = id_pedido;
+<<<<<<< HEAD
+    constructor(material, prioridade, maquina, estado, arquivo, cor, descricao, comentario, id_horaDisponivel, id_autorPedido, id_autorAutorizador) {
+=======
+<<<<<<< HEAD
+    constructor(material, prioridade, maquina, arquivo, medida, id_horaDisponivel, id_autorPedido, id_autorAutorizador) {
+=======
+    constructor(material, prioridade, maquina, estado, arquivo, medida, id_horaDisponivel, id_autorPedido, id_autorAutorizador) {
+>>>>>>> main
+>>>>>>> 1611ae6ded2549344d78a728c0fd2d6dcda83c77
         this.material = material;
         this.prioridade = prioridade;
         this.maquina = maquina;
         this.estado = estado;
         this.arquivo = arquivo;
-        this.medida = medida;
+        this.cor = cor;
+        this.descricao = descricao;
+        this.comentario = comentario;
         this.id_horaDisponivel = id_horaDisponivel;
         this.id_autorPedido = id_autorPedido;
         this.id_autorAutorizador = id_autorAutorizador;
     }
-    get Id() {
-        return this.id_pedido;
+    setEstado(estado) {
+        if (this.estado == Estado.pendente &&
+            estado == (Estado.aprovado || Estado.reprovado)) {
+            this.estado = estado;
+        }
+        else if (this.estado == Estado.aprovado && estado == Estado.concluido) {
+            this.estado = estado;
+        }
+        else if (this.estado == Estado.concluido) {
+            throw "pedido ja concluido, nao pode ser alterado";
+        }
+        else {
+            throw "escolha um estado valido";
+        }
     }
     get Material() {
         return this.material;
@@ -32,8 +53,14 @@ class Pedido {
     get Arquivo() {
         return this.arquivo;
     }
-    get Medida() {
-        return this.medida;
+    get Cor() {
+        return this.cor;
+    }
+    get Descricao() {
+        return this.descricao;
+    }
+    get Comentario() {
+        return this.comentario;
     }
     get Id_horaDisponivel() {
         return this.id_horaDisponivel;
@@ -48,14 +75,15 @@ class Pedido {
 exports.Pedido = Pedido;
 var Estado;
 (function (Estado) {
-    Estado[Estado["pendete"] = 0] = "pendete";
-    Estado[Estado["aprovado"] = 1] = "aprovado";
-    Estado[Estado["concluido"] = 2] = "concluido";
-    Estado[Estado["reprovado"] = 3] = "reprovado";
+    Estado["pendente"] = "pendente";
+    Estado["aprovado"] = "aprovado";
+    Estado["em_andamento"] = "em andamento";
+    Estado["concluido"] = "concluido";
+    Estado["reprovado"] = "reprovado";
 })(Estado = exports.Estado || (exports.Estado = {}));
 var Prioridade;
 (function (Prioridade) {
-    Prioridade[Prioridade["baixa"] = 0] = "baixa";
-    Prioridade[Prioridade["media"] = 1] = "media";
-    Prioridade[Prioridade["alta"] = 2] = "alta";
+    Prioridade["baixa"] = "baixa";
+    Prioridade["media"] = "media";
+    Prioridade["alta"] = "alta";
 })(Prioridade = exports.Prioridade || (exports.Prioridade = {}));

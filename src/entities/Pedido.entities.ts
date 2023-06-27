@@ -1,6 +1,8 @@
-import { HoraDisponivel } from './HoraDisponivel.entities';
-import { Usuario } from './Usuario.entities';
-
+import { HoraDisponivel } from "./HoraDisponivel.entities";
+import { Usuario } from "./Usuario.entities";
+import { DeepPartial } from "typeorm";
+import { Estado } from "../models/Pedido";
+import { Prioridade } from "../models/Pedido";
 import {
   Column,
   Entity,
@@ -9,52 +11,45 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 
+
 @Entity("pedidos")
 export class Pedido {
   @PrimaryGeneratedColumn()
   id_pedido: number;
 
-  @Column({ type: "text", nullable:true })
-  material: string;
-  
-  @Column({type: "text"})
-  prioridade: Prioridade
+  @Column({ type: "text", nullable: true })
+  material: string | null;
+
+  @Column({ type: "enum", enum: Prioridade })
+  prioridade: Prioridade;
 
   @Column({ type: "text", nullable: true })
-  maquina: string;
+  maquina: string | null;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: "enum", enum: Estado })
   estado: Estado;
-  
-  @Column({type: 'text', nullable:true})
-  arquivo: Buffer
-  
-  @Column({type:"text", nullable:true})
-  medida: string
-  
+
+  @Column({ type: "text", nullable: true })
+  arquivo: string;
+
+  @Column({ type: "text", nullable: true })
+  cor: string | null;
+
+  @Column({ type: "text", nullable: true })
+  descricao: string | null;
+
+  @Column({ type: "text", nullable: true })
+  comentario: string | null;
+
   @ManyToOne(() => HoraDisponivel, (horaDisponivel) => horaDisponivel.horas)
-  @JoinColumn({name: "id_horaDisponivel"})
-  id_horaDisponivel: HoraDisponivel
+  @JoinColumn({ name: "id_horaDisponivel" })
+  id_horaDisponivel: number | null;
 
   @ManyToOne(() => Usuario, (usuario) => usuario.autorPedido)
   @JoinColumn({name: "id_autorPedido"})
-  id_autorPedido: Usuario
+  id_autorPedido: number
   
   @ManyToOne(() => Usuario, (usuario) => usuario.autorAutorizador)
-  @JoinColumn({ name: "id_autorAutorizador"})
-  id_autorAutorizador: Usuario;
-  
-}
-
-export enum Estado {
-  pendete,
-  aprovado,
-  concluido,
-  reprovado,
-}
-
-export enum Prioridade {
-  baixa,
-  media,
-  alta
+  @JoinColumn({ name: "id_autorAutorizador" })
+  id_autorAutorizador: number | null;
 }

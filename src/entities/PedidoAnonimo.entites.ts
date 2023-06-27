@@ -1,5 +1,6 @@
 import { HoraDisponivel } from "./HoraDisponivel.entities";
 import { Usuario } from "./Usuario.entities";
+import { Estado } from "../models/Pedido";
 
 import {
   Column,
@@ -8,6 +9,8 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+
+
 
 @Entity("pedidosAnonimo")
 export class PedidoAnonimo {
@@ -20,23 +23,29 @@ export class PedidoAnonimo {
   @Column({ type: "text", nullable: true })
   maquina: string;
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: "enum", enum: Estado })
   estado: string;
 
   @Column({ type: "text", nullable: true })
-  arquivo: Buffer;
+  arquivo: string;
 
   @Column({ type: "text", nullable: true })
-  medida: string;
+  cor: string | null;
+
+  @Column({ type: "text", nullable: true })
+  descricao: string | null;
+
+  @Column({ type: "text", nullable: true })
+  comentario: string | null;
 
   @Column({ type: "text", nullable: true })
   codigo: string;
-  
+
   @ManyToOne(() => HoraDisponivel, (horaDisponivel) => horaDisponivel.horas)
   @JoinColumn({ name: "id_horaDisponivel" })
-  id_horaDisponivel: HoraDisponivel;
+  id_horaDisponivel: number | null;
 
   @ManyToOne(() => Usuario, (usuario) => usuario.autorAutorizadorAnonimo)
   @JoinColumn({ name: "id_autorAutorizadorAnonimo" })
-  id_autorAutorizadorAnonimo: Usuario;
+  id_autorAutorizadorAnonimo: number | null;
 }
